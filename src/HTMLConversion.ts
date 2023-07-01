@@ -8,7 +8,7 @@ export async function convertDesToHTML(nodes: SceneNode[]): Promise<string> {
       if (node.type === 'FRAME' || node.type === 'GROUP' || node.type === 'COMPONENT') {
         let nodeData = await node.getCSSAsync();
         // console.log(nodeData); top: ${node.y}px; left:${node.x}px;
-        res += `<div style="position: relative; width: ${nodeData.width};  height: ${nodeData.height}; background-color: ${nodeData.background}">`;
+        res += `<div style="position: relative; width: ${nodeData.width};  height: ${nodeData.height}; background-color: ${nodeData.background}; display: ${nodeData.display}">`;
         res += '\n';
         // Recursively calling this function. Kinda DFS.
         const childHTML = await Promise.all(node.children.map(async (childNode) => await convertDesToHTML([childNode])));
