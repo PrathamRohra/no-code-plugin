@@ -13,9 +13,12 @@ figma.ui.onmessage = async (pluginMessage) => {
     // const nodes = figma.currentPage.findAll();
     // console.log(convertDesToHTML)
     const html = await convertDesToHTML(nodes);
-    console.log(html);
+    // console.log(html);
+    await figma.loadFontAsync({family: "Inter", style: "Regular"})
+    const text = figma.createText();
+    text.characters = html;
     figma.ui.postMessage({pluginMessage: {type: 'result', html}})
-    console.log("HEllo")
+    console.log("Hello")
   }
   // figma.closePlugin();
 };
